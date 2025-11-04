@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const loginForm = document.getElementById('login');
+  const loginForm = document.getElementById('loginForm');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
 
     // Validação básica
-    if (validateForm()) {
+    if (validadeForm()) {
         // Simulação de login bem-sucedido
       alert('Login realizado com sucesso!');
       // Aqui você normalmente faria uma requisição para o servidor
@@ -18,82 +18,81 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Validação em tempo real
     emailInput.addEventListener('blur', validateEmail);
-       passwordInput.addEventListener('blur, validatePassword');
+       passwordInput.addEventListener('blur', validatePassword);
 
        function validadeForm() {
         const isEmailValid = validateEmail();
         const isPasswordValid = validatePassword();
 
-        return is
-       }    }
+        return isEmailValid && isPasswordValid;
+       }    
 
-    // Validação de senha
-    const passwordValid = validatePassword(passwordInput.value);
-    if (!passwordValid) {
-      alert('Senha inválida');
-      return;
+    function validateEmail() {
+      const email = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^s@]+$/;
+
+      if (email === '') {
+        showError(emailInput, 'E-mail é obrigatório');
+        return false;
+      } else if (!emailRegex.test(email)) {
+        showError(emailInput, 'E-mail inválido');
+        return false;
+      } else {
+        showSucess(emailInput);
+        return true;
+      }
     }
 
-    // Enviar formulário
-    loginForm.submit();
-  });
+  function validatePassword() {
+    const password = passwordInput.value.trim();
 
-  // Validação do tempo real
-  emailInput.addEventListener('blur', validateEmail);
-  passwordInput.addEventListener('blur', validatePassword);
-
-  function validateEmail(email) {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(email);
+    if (password === '') {
+      showError(passwordInput, 'Senha é obrigatória');
+      return false;
+    } else if (password.length < 6) {
+      showError(passwordInput, 'Senha deve ter pelo menos 6 caracteres');
+      return false;
+    } else {
+      showSucess(passwordInput);
+      return true;
+    }
   }
+  
+  function showError(input, message) {
+    const inputGroup = input.parentElement;
 
-  function validatePassword(password) {
-    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    return passwordPattern.test(password);
+    // Remove classes de sucesso se existirem
+    input.classList.add('error');
+
+    // Adiciona classes de erro
+    input.classList.add('error');
+
+    // Remove mensagens de erro anteriores
+    const existingError = inputGroup.querySelector('.error-message');
+    if (existingError) {
+      existingError.remove();
+    }
+
+    // Adiciona mensagem de erro
+    const errorElement = document.createElement('div');
+    errorElement.className = 'error-message';
+    errorElement.innerText = message;
+    inputGroup.appendChild(errorElement);
   }
+    
+   function showSucess(input) {
+    const inputGroup = input.parentElement;
+
+    // Remove classes de erro se existirem
+    input.classList.remove('error');
+
+    // Adiciona classes de sucesso
+    input.classList.add('sucess');
+
+    // Remove mensagens de erro
+    const existingError = inputGroup.querySelector('.error-message');
+    if (existingError) {
+      existingError.remove();
+    }
+   }
 });
-function validatePassword() {
-  const password = passwordInput.value.trim();
-
-  if (password === '') {
-    showError(passwordInput, 'Senha é obrigatória');
-    return false;
-  } else if (password.length < 6) {
-    showError(passwordInput, 'Senha deve ter pelo menos 6 caracteres');
-    return false;
-  } else {
-    showSuccess(passwordInput);
-    return true;
-  }
-}
-
-function showError(input, message) {
-  const inputGroup = input.parentElement;
-  const errorElement = inputGroup.querySelector('.error-message');
-
-  // Remove classes de sucesso e exibe erro
-  inputGroup.classList.remove('success');
-  inputGroup.classList.add('error');
-
-  if (existingError) {
-    existingError.remove();
-  }
-
-  const errorMessage = document.createElement('span');
-  errorMessage.classList.add('error-message');
-  errorMessage.innerText = message;
-  inputGroup.appendChild(errorMessage);
-}
-
-function showSuccess(input) {
-  const inputGroup = input.parentElement;
-
-  // Remove classes de erro e exibe sucesso
-  inputGroup.classList.remove('error');
-  inputGroup.classList.add('success');
-
-  const existingError = inputGroup.querySelector('.error-message');
-  if (existingError) {
-    existingError.remove();
-  }
-}
