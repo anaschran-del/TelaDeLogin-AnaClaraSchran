@@ -1,0 +1,40 @@
+#resetPasswordForm {
+display: flex;
+flex-direction: column;
+gap: 1.2rem;
+}
+
+#resetPasswordForm h2 {
+text-align: center;
+color: #333;
+margin-bottom: 1rem;
+}
+
+#resetPasswordForm .input-group {
+display: flex;
+flex-direction: column;
+text-align: left;
+}
+
+#resetPasswordForm input {
+width: 100%;
+padding: 0.8rem 1rem;
+border: 2px solid #e1e5ee;
+border-radius: 8px;
+font-size: 1rem;
+transition: all 0.3s;
+}
+
+#resetPasswordForm input:focus {
+outline: none;
+border-color: #4a90e2;
+box-shadow: 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.back-link {
+display: block;
+text-align: center;
+color: #4a90e2;
+text-decoration: none;
+font-weight: 500;
+}
