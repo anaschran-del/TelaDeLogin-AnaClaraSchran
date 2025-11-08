@@ -3,32 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sistema de Login</title>
+
+    <!--Importando os arquivos de estilo-->
+    <link rel="stylesheet" href="style-global.css">
+    <link rel="stylesheet" href="style-login.css">
+    <link rel="stylesheet" href="style-reset.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-form">
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Entrar</button>
-                    <button type="reset" class="btn btn-secondary">Limpar</button>
-                </div>
-                <div class="forgot-password">
-                    <a href="reset-password.html">Esqueci minha senha</a>
-                </div>
-            </form>
+    <div class="container">
+        <div class="card" id="loginCard">
+            <div class="card-iner">
+
+                <!--FORMULÀRIO DE LOGIN-->
+                <div class="card-front">
+                    <form id="loginForm">
+                      <h2>Login</h2>
+                      <div id="loginMessage" class="message"></div>
+                      
+                      <div class="input-group">
+                         <label for="email">E-mail</label>
+                         <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                        </div>
+                        
+                        <div class="input-group">
+                             <label for="password">Senha</label>
+                             <input type="password" id="password" name="password" required placeholder="Sua senha">
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Entrar</button>
+                                <button type="reset" class="btn btn-secondary">Limpar</button>
+                            </div>
+                            
+                            <div class="forgot-password">
+                                <a href="#" id="forgotPassword">Esqueci minha senha</a>
+                            </div>
+                        </form>
+                    </div>
+                
+                <!--FORMULÀRIO DE REDEFINIÇÃO-->
+                </div class="card-back">
+                 <form id="resetPasswordForm">
+                    <h2>Redefinir Senha</h2>
+                    <div id="resetMessage" class="message"</div>
+                        
+                    <div class="input-group">
+                        <label for="resetEmail">E-mail</label>
+                        <input type="email" id="resetEmail" name="resetEmail" required placeholder="seu@email.com"
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Email Link</button>
+                        <a href="#" class="btn btn-secondary" id="backToLogin">Voltar</a>
+                    </div>
+
+                    <a href="#" class="back-link" id="backToLoginLink" > Voltar para o login</a>
+                </form>
+            </div>
+        
         </div>
     </div>
+</div>
+
+    <!--Script-->
     <script src="script.js"></script>
 </body>
 </html>
